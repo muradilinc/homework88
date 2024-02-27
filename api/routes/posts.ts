@@ -14,7 +14,7 @@ postsRouter.post(
     try {
       const post = new Post({
         title: req.body.title,
-        description: req.body.description,
+        description: req.body.description || null,
         image: req.file ? req.file.filename : null,
         datetime: new Date().toISOString(),
         author: req.user?._id,
@@ -29,5 +29,16 @@ postsRouter.post(
     }
   },
 );
+
+postsRouter.get('/', async (req, res, next) => {
+  try {
+    const results = await Post.find()
+      .sort({ datetime: -1 })
+      .populate('author', 'username');
+    return res.send(results);
+  } catch (error) {
+    return next(error);
+  }
+});
 
 export default postsRouter;
