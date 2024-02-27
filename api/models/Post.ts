@@ -1,9 +1,10 @@
 import mongoose from 'mongoose';
 import { Post } from '../types';
+import User from './User';
 
 const Schema = mongoose.Schema;
 
-const postSchema = new Schema<Post>({
+const postSchema = new Schema({
   title: {
     type: String,
     required: true,
@@ -11,7 +12,7 @@ const postSchema = new Schema<Post>({
   description: {
     type: String,
     validate: {
-      validator: async function (value: string) {
+      validator: async function (this: Post, value: string) {
         return !this.image || value;
       },
       message: 'Description is required!',
@@ -20,7 +21,7 @@ const postSchema = new Schema<Post>({
   image: {
     type: String,
     validate: {
-      validator: async function (value: string) {
+      validator: async function (this: Post, value: string) {
         return !this.description || value;
       },
     },
@@ -29,6 +30,18 @@ const postSchema = new Schema<Post>({
   datetime: {
     type: Date,
     required: true,
+  },
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+    validate: {
+      validator: async (value: mongoose.Types.ObjectId) => {
+        const user = await User.findById(value);
+        return Boolean(user);
+      },
+      message: "Author doesn't exist!",
+    },
   },
 });
 
