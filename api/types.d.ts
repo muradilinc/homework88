@@ -12,3 +12,10 @@ export interface UserMethods {
 }
 
 export type UserModel = Model<UserFields, unknown, UserMethods>;
+
+export interface Post {
+  title: string;
+  description: string;
+  image: string;
+  datetime: Date;
+}
