@@ -13,7 +13,12 @@ const postSchema = new Schema({
     type: String,
     validate: {
       validator: async function (this: Post, value: string) {
-        return !this.image || value;
+        if (!this.image && !value) {
+          if (value === null) {
+            return false;
+          }
+          return false;
+        }
       },
       message: 'Description is required!',
     },
@@ -22,7 +27,12 @@ const postSchema = new Schema({
     type: String,
     validate: {
       validator: async function (this: Post, value: string) {
-        return !this.description || value;
+        if (!this.description && !value) {
+          if (value === null) {
+            return false;
+          }
+          return false;
+        }
       },
     },
     message: 'Image is required!',
