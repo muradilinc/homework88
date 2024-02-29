@@ -30,11 +30,23 @@ postsRouter.post(
   },
 );
 
-postsRouter.get('/', async (req, res, next) => {
+postsRouter.get('/', async (_req, res, next) => {
   try {
     const results = await Post.find()
       .sort({ datetime: -1 })
       .populate('author', 'username');
+    return res.send(results);
+  } catch (error) {
+    return next(error);
+  }
+});
+
+postsRouter.get('/:id', async (req, res, next) => {
+  try {
+    const results = await Post.findById(req.params.id).populate(
+      'author',
+      'username',
+    );
     return res.send(results);
   } catch (error) {
     return next(error);
