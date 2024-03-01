@@ -3,5 +3,6 @@ export const routes = {
   post: '/posts',
   signUp: '/sign-up',
   signIn: '/sign-in',
+  newPost: '/submit',
   notPage: '*',
 };
