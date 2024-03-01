@@ -7,6 +7,7 @@ import {
 } from '../../store/comments/commentsThunk.ts';
 import { selectCreateCommentsLoading } from '../../store/comments/commentsSlice.ts';
 import Spinner from '../Spinner/Spinner.tsx';
+import { toast } from 'react-toastify';
 
 const FormComment = () => {
   const { id } = useParams() as { id: string };
@@ -36,6 +37,7 @@ const FormComment = () => {
       await dispatch(getCommentsByPost(id)).unwrap();
       setShowPanel(false);
       setComment('');
+      toast.success('comment published!');
     } catch (error) {
       console.log(error);
     }

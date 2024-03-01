@@ -25,11 +25,15 @@ const Posts = () => {
 
   return (
     <>
-      {posts.map((post) => (
-        <Link key={post._id} to={routes.post + '/' + post._id}>
-          <PostsItem post={post} />
-        </Link>
-      ))}
+      {posts.length !== 0 ? (
+        posts.map((post) => (
+          <Link key={post._id} to={routes.post + '/' + post._id}>
+            <PostsItem post={post} />
+          </Link>
+        ))
+      ) : (
+        <h2 className="text-[#0F1A1C] font-bold">No posts!</h2>
+      )}
     </>
   );
 };

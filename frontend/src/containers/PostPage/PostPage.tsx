@@ -24,10 +24,10 @@ const PostPage = () => {
   }
 
   return (
-    <div>
+    <>
       <PostsItem post={post} />
       <Comments postId={id} />
-    </div>
+    </>
   );
 };
 

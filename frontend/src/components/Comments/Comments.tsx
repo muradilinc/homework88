@@ -44,17 +44,21 @@ const Comments: React.FC<Props> = ({ postId }) => {
         </button>
       )}
       <div className="flex flex-col gap-y-3 my-5">
-        {comments.map((comment) => (
-          <div key={comment._id} className="flex flex-col gap-y-[10px]">
-            <h4 className="text-[#0F1A1C] font-bold">
-              {comment.author.username}{' '}
-              <span className="text-[#576F76] font-light">
-                • {dayjs(comment.datetime).format('DD.MM.YYYY HH:MM')}
-              </span>
-            </h4>
-            <p className="text-sm">{comment.text}</p>
-          </div>
-        ))}
+        {comments.length !== 0 ? (
+          comments.map((comment) => (
+            <div key={comment._id} className="flex flex-col gap-y-[10px]">
+              <h4 className="text-[#0F1A1C] font-bold">
+                {comment.author.username}{' '}
+                <span className="text-[#576F76] font-light">
+                  • {dayjs(comment.datetime).format('DD.MM.YYYY HH:MM')}
+                </span>
+              </h4>
+              <p className="text-sm">{comment.text}</p>
+            </div>
+          ))
+        ) : (
+          <h2 className="text-[#0F1A1C] font-bold">No comments !</h2>
+        )}
       </div>
     </div>
   );
