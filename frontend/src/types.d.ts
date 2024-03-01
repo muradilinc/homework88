@@ -8,6 +8,7 @@ export interface Post {
   description?: string;
   image?: string;
   datetime: string;
+  commentCount: number;
 }
 
 export interface Comment {

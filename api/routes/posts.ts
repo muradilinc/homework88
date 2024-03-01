@@ -3,6 +3,7 @@ import auth, { RequestWithUser } from '../middleware/auth';
 import Post from '../models/Post';
 import { imagesUpload } from '../helper/multer';
 import mongoose from 'mongoose';
+import Comment from '../models/Comment';
 
 const postsRouter = express.Router();
 
@@ -35,7 +36,15 @@ postsRouter.get('/', async (_req, res, next) => {
     const results = await Post.find()
       .sort({ datetime: -1 })
       .populate('author', 'username');
-    return res.send(results);
+
+    const postsWithCommentCount = await Promise.all(
+      results.map(async (post) => {
+        const commentCount = await Comment.countDocuments({ post: post._id });
+        return { ...post.toObject(), commentCount };
+      }),
+    );
+
+    return res.send(postsWithCommentCount);
   } catch (error) {
     return next(error);
   }

@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import { BASE_URL } from '../../constants/links.ts';
 import discussion from '../../assets/discusion.png';
 import { Post } from '../../types';
+import { Chats } from '@phosphor-icons/react';
 
 interface Props {
   post: Post;
@@ -13,7 +14,7 @@ const PostsItem: React.FC<Props> = ({ post }) => {
   return (
     <div className={singlePost ? 'border-gray-500 border-t-[1px]' : ''}>
       <div
-        className={`my-[2px] ${singlePost ? 'hover:bg-gray-200 rounded-[10px] px-[10px]' : ''}`}
+        className={`my-[2px] ${singlePost ? 'hover:bg-gray-200 rounded-[10px] px-[10px] py-[5px]' : ''}`}
       >
         <div>
           <p className="text-[#2A3C42]">
@@ -39,7 +40,9 @@ const PostsItem: React.FC<Props> = ({ post }) => {
             }
           >
             {singlePost ? (
-              <img className="w-[100px]" src={discussion} alt="discussion" />
+              <>
+                <img className="w-[100px]" src={discussion} alt="discussion" />
+              </>
             ) : null}
             <h4 className="text-lg font-semibold text-black">{post.title}</h4>
             {!singlePost ? (
@@ -49,6 +52,14 @@ const PostsItem: React.FC<Props> = ({ post }) => {
             ) : null}
           </div>
         )}
+        {singlePost ? (
+          <div className="flex items-center my-[10px]">
+            <p className="bg-[#EAEDEF] flex px-[10px] py-[5px] rounded-[30px] gap-x-[5px]">
+              <Chats size={22} />
+              {post.commentCount}
+            </p>
+          </div>
+        ) : null}
       </div>
     </div>
   );
