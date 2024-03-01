@@ -19,7 +19,7 @@ const PostsItem: React.FC<Props> = ({ post }) => {
           <p className="text-[#2A3C42]">
             {post.author.username}{' '}
             <span className="text-[#576F76]">
-              • {dayjs(post.datetime).format('DD.MM.YYYY HH:MM')}
+              • {dayjs(post.datetime).format('DD.MM.YYYY hh:mm')}
             </span>
           </p>
         </div>

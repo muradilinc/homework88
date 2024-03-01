@@ -50,7 +50,7 @@ const Comments: React.FC<Props> = ({ postId }) => {
               <h4 className="text-[#0F1A1C] font-bold">
                 {comment.author.username}{' '}
                 <span className="text-[#576F76] font-light">
-                  • {dayjs(comment.datetime).format('DD.MM.YYYY HH:MM')}
+                  • {dayjs(comment.datetime).format('DD.MM.YYYY hh:mm')}
                 </span>
               </h4>
               <p className="text-sm">{comment.text}</p>
