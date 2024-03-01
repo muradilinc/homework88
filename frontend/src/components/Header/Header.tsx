@@ -17,7 +17,7 @@ const Header = () => {
 
   return (
     <div className="px-[30px] relative">
-      <div className="flex justify-between items-center border-b border-black py-3">
+      <div className="flex justify-between items-center border-b border-gray-400 py-3">
         <div>
           <Link to={routes.home}>
             <h2 className="text-[#ff6314] text-4xl font-bold">MReddit</h2>
@@ -32,22 +32,22 @@ const Header = () => {
               Create
             </Link>
             <div>
-              <p onClick={() => setShowMenu(!showMenu)}>
-                Hello, {user.username}
+              <p
+                className="cursorNormal"
+                onClick={() => setShowMenu(!showMenu)}
+              >
+                Hello,{' '}
+                <span className="capitalize font-bold">{user.username}</span>
               </p>
               {showMenu ? (
                 <div
-                  id="dropdown"
-                  className={`z-10 ${showMenu ? 'bloc' : 'hidden'} absolute right-0 top-[60px] bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700`}
+                  className={`z-10 ${showMenu ? 'bloc' : 'hidden'} absolute right-5 top-[60px] bg-[#DAE0E6] rounded-lg shadow w-44 dark:bg-gray-700`}
                 >
-                  <ul
-                    className="py-2 text-sm text-gray-700 dark:text-gray-200"
-                    aria-labelledby="dropdownDefaultButton"
-                  >
+                  <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
                     <li>
                       <button
                         onClick={handleLogout}
-                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        className="block w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
                         Logout
                       </button>

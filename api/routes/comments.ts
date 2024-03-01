@@ -11,6 +11,7 @@ commentsRouter.post('/', auth, async (req: RequestWithUser, res, next) => {
       author: req.user?._id,
       post: req.body.post,
       text: req.body.text,
+      datetime: new Date().toISOString(),
     });
 
     await comment.save();

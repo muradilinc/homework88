@@ -14,6 +14,7 @@ export interface Comment {
   _id: string;
   author: Author;
   text: string;
+  datetime: string;
 }
 
 export interface ValidationError {
@@ -51,4 +52,10 @@ export interface RegisterMutation {
 export interface LoginMutation {
   username: string;
   password: string;
+}
+
+export interface PostMutation {
+  title: string;
+  description?: string;
+  image?: File | null;
 }
